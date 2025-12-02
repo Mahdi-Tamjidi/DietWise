@@ -59,7 +59,7 @@ export default HiwSection;
 
 const StepItem = ({ icon, label, description, color }: Step) => {
   return (
-    <div className="relative p-6 rounded-md backdrop-blur-xs transition-colors group w-full border border-white/10">
+    <div className="relative p-6 rounded-md backdrop-blur-xs transition-colors group w-full border border-white/10 hover:border-main-color/50 ">
       <div className="flex flex-col gap-4 h-full ">
         <div className="flex items-center justify-center h-18 w-18 mx-auto rounded-2xl bg-tertiary-dark border border-quaternary-dark group-hover:border-main-color/50 transition-colors">
           <div className={`text-[${color}]`}>{icon}</div>
