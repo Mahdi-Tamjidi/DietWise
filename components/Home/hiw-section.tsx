@@ -14,28 +14,28 @@ const steps: Step[] = [
     label: "Input Your Stats",
     description:
       "Tell us about your body, lifestyle, and goals. Our AI considers 50+ metabolic factors.",
-    color: "#33ff47",
+    color: "text-emerald-400",
   },
   {
     icon: <Brain size={35} strokeWidth={1.8} />,
     label: "AI Analysis",
     description:
       "Our deep learning model calculates your optimal caloric deficit and macro split instantly.",
-    color: "#8b33ff",
+    color: "text-violet-400",
   },
   {
     icon: <Utensils size={35} strokeWidth={1.8} />,
     label: "Get Your Plan",
     description:
       "Receive a week-by-week meal plan that adapts as you progress toward your target weight.",
-    color: "#ef4444",
+    color: "text-orange-400",
   },
 ];
 
 const HiwSection = () => {
   return (
     <section className=" py-12 bg-secondary-dark">
-      <div className="container mx-auto">
+      <div className="container">
         <div className="flex flex-col items-center justify-center text-center mb-9">
           <h2 className="mb-6">See How It Works</h2>
           <p className="text-text-secondary max-w-lg md:max-w-2xl">
@@ -62,7 +62,7 @@ const StepItem = ({ icon, label, description, color }: Step) => {
     <div className="relative p-6 rounded-md backdrop-blur-xs transition-colors group w-full border border-white/10 hover:border-main-color/50 ">
       <div className="flex flex-col gap-4 h-full ">
         <div className="flex items-center justify-center h-18 w-18 mx-auto rounded-2xl bg-tertiary-dark border border-quaternary-dark group-hover:border-main-color/50 transition-colors">
-          <div className={`text-[${color}]`}>{icon}</div>
+          <div className={color}>{icon}</div>
         </div>
         <div className="flex flex-col flex-1 gap-1 justify-between">
           <h4 className="text-center font-bold text-xl mb-1">{label}</h4>

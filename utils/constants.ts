@@ -1,0 +1,46 @@
+export const pricingPlans = [
+  {
+    id: "starter",
+    name: "Starter",
+    description: "Basic calorie tracking for beginners.",
+    price: 9,
+    items: [
+      "Daily Calorie Calculator",
+      "Basic Food Database",
+      "Weight Logging",
+      "Community Support",
+    ],
+    paymentLink: "",
+    priceId: "",
+  },
+  {
+    id: "proAi",
+    name: "Pro AI",
+    description: "Full AI personalization for serious results.",
+    price: 19,
+    items: [
+      "Dynamic Macro Adjustments",
+      "AI Meal Generation",
+      "Grocery List Automation",
+      "24/7 AI Coach Chat",
+      "Progress Prediction",
+    ],
+    paymentLink: "",
+    priceId: "",
+  },
+  {
+    id: "coaching",
+    name: "Coaching",
+    description: "Human expert review combined with AI.",
+    price: 49,
+    items: [
+      "Everything in Pro AI",
+      "Weekly Human Check-ins",
+      "Custom Supplement Plan",
+      "Priority Support",
+      "Video Consultations",
+    ],
+    paymentLink: "",
+    priceId: "",
+  },
+];

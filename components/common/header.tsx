@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import NavLink from "@/components/common/nav-link";
-import { Menu } from "lucide-react";
+import { LogIn, Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -88,7 +89,17 @@ const Header = () => {
           <NavLink href="/testimonial">Stories</NavLink>
         </div>
         <div className="flex flex-1 items-center  justify-end">
-          <NavLink href="/sign-in">Sign In</NavLink>
+          <Button className="px-5 rounded-2xl bg-main-color hover:bg-main-color-hover transition-colors duration-200 text-text-dark font-bold hover:text-text-dark gap-1">
+            <NavLink
+              className="flex items-center justify-center gap-1.5 text-text-dark hover:text-text-dark "
+              href="/sign-in"
+            >
+              <span>
+                <LogIn strokeWidth={2.5} />
+              </span>
+              Sign In
+            </NavLink>
+          </Button>
         </div>
       </div>
     </nav>

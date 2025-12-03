@@ -1,11 +1,11 @@
 import HiwSection from "@/components/Home/hiw-section";
-import Pricing from "@/components/Home/pricing";
+import PricingSection from "@/components/Home/pricing-section";
 
 export default function Home() {
   return (
     <div className="flex flex-col mt-20">
       <HiwSection />
-      <Pricing />
+      <PricingSection />
     </div>
   );
 }
