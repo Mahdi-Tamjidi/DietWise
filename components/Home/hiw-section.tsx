@@ -1,5 +1,6 @@
 import { Brain, Scale, Utensils } from "lucide-react";
 import { ReactNode } from "react";
+import Title from "@/components/common/title";
 
 type Step = {
   icon: ReactNode;
@@ -34,15 +35,13 @@ const steps: Step[] = [
 
 const HiwSection = () => {
   return (
-    <section className=" py-12 bg-secondary-dark">
+    <section id="hiw" className=" py-15 bg-secondary-dark/50">
       <div className="container">
-        <div className="flex flex-col items-center justify-center text-center mb-9">
-          <h2 className="mb-6">See How It Works</h2>
-          <p className="text-text-secondary max-w-lg md:max-w-2xl">
-            Experience the power of our metabolic engine. Adjust the parameters
-            below to see how DietWise adapts the plan in real-time.
-          </p>
-        </div>
+        <Title
+          title="See How It Works"
+          subTitle="Experience the power of our metabolic engine. Adjust the parameters
+            below to see how DietWise adapts the plan in real-time."
+        />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto mb-2">
           {steps.map((step, idx) => (
             <div key={idx} className="relative flex items-stretch">

@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { pricingPlans } from "@/utils/constants";
 import { CheckIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import Title from "@/components/common/title";
 
 type PriceType = {
   name: string;
@@ -61,17 +63,22 @@ const PricingCard = ({
           ))}
         </div>
         <div className="space-y-2 flex justify-center w-full">
-          <Link
-            href={paymentLink}
+          <Button
             className={cn(
-              "w-full font-bold rounded-xl flex items-center justify-center gap-2 py-2 transition-all",
+              "w-full font-bold rounded-xl gap-2 transition-all py-7 text-md",
               id === "proAi"
-                ? " py-4 bg-main-color hover:bg-main-color-hover text-text-dark shadow-lg shadow-main-color/20"
-                : " py-4 bg-tertiary-dark hover:bg-quaternary-dark "
+                ? "  bg-main-color hover:bg-main-color-hover text-text-dark shadow-lg shadow-main-color/20"
+                : "  bg-tertiary-dark hover:bg-quaternary-dark "
             )}
           >
-            Buy Now
-          </Link>
+            <Link href={paymentLink}>
+              {id === "proAi"
+                ? "Get Pro AI"
+                : id === "starter"
+                ? "Buy Now"
+                : "Join Coaching"}
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
@@ -80,14 +87,12 @@ const PricingCard = ({
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-12">
+    <section id="pricing" className="py-25">
       <div className="container">
-        <div className="flex flex-col items-center justify-center text-center mb-12">
-          <h2 className="mb-6">Simple Pricing, Powerful Results</h2>
-          <p className="text-text-secondary max-w-lg md:max-w-2xl">
-            Choose the plan that fits your journey. Cancel anytime.
-          </p>
-        </div>
+        <Title
+          title="Simple Pricing, Powerful Results"
+          subTitle="Choose the plan that fits your journey. Cancel anytime."
+        />
         <div className="relative flex justify-center flex-col lg:flex-row items-center lg:items-stretch gap-12  ">
           {pricingPlans.map((plan) => (
             <PricingCard key={plan.id} {...plan} />
