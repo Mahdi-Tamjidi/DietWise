@@ -37,6 +37,7 @@ export function CarouselSpacing() {
       className="w-full "
       opts={{
         loop: true,
+        align: "start",
       }}
       plugins={[
         Autoplay({
@@ -50,7 +51,7 @@ export function CarouselSpacing() {
         {testimonialComments.map((comment, index) => (
           <CarouselItem
             key={index}
-            className="pl-1 md:basis-1/1 lg:basis-1/3 flex"
+            className="pl-1 basis-full md:basis-1/2 lg:basis-1/3 flex"
           >
             <div className="p-1 flex w-full">
               <Card className="bg-text-dark border border-white/10 py-10 px-5  ">
@@ -88,7 +89,7 @@ export function CarouselSpacing() {
                     )}
                   </CardAction>
                 </CardHeader>
-                <CardContent className="flex-grow">
+                <CardContent className="grow">
                   <p className="italic text-text-secondary">
                     {comment.comment}
                   </p>
