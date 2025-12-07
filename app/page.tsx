@@ -1,3 +1,4 @@
+import DemoSection from "@/components/Home/demo-section";
 import HiwSection from "@/components/Home/hiw-section";
 import PricingSection from "@/components/Home/pricing-section";
 import TestimonialSection from "@/components/Home/testimonial-section";
@@ -5,6 +6,7 @@ import TestimonialSection from "@/components/Home/testimonial-section";
 export default function Home() {
   return (
     <div className="flex flex-col mt-20">
+      <DemoSection />
       <HiwSection />
       <PricingSection />
       <TestimonialSection />
