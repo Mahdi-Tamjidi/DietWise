@@ -176,3 +176,25 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+@layer utilities {
+  /* Track color while disabled */
+
+  /* Thumb color while disabled */
+  .disabled-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--main-color-hover);
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+  }
+
+  /* Firefox */
+  .disabled-slider::-moz-range-thumb {
+    background-color: var(--main-color-hover);
+  }
+  .disabled-slider::-moz-range-track {
+    background-color: var(--main-color-hover);
+  }
+}

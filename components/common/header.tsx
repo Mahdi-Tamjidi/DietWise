@@ -23,6 +23,9 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", onScroll);
+
+    onScroll();
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
