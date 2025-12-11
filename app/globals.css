@@ -116,7 +116,7 @@
     @apply border-border;
   }
   h1 {
-    @apply text-4xl md:text-6xl xl:text-7xl font-bold;
+    @apply text-6xl md:text-6xl xl:text-7xl font-bold;
   }
 
   h2 {
@@ -197,4 +197,18 @@ input[type="number"]::-webkit-outer-spin-button {
   .disabled-slider::-moz-range-track {
     background-color: var(--main-color-hover);
   }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px); /* Move up slightly */
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
