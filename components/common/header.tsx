@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -92,17 +93,29 @@ const Header = () => {
           <NavLink href="/testimonial">Stories</NavLink>
         </div>
         <div className="flex flex-1 items-center  justify-end">
-          <Button className="px-5 rounded-2xl bg-main-color hover:bg-main-color-hover transition-colors duration-200 text-text-dark font-bold hover:text-text-dark gap-1">
-            <NavLink
-              className="flex items-center justify-center gap-1.5 text-text-dark hover:text-text-dark "
-              href="/sign-in"
-            >
-              <span>
-                <LogIn strokeWidth={2.5} />
-              </span>
-              Sign In
-            </NavLink>
-          </Button>
+          <SignedOut>
+            <Button className="px-5 rounded-2xl bg-main-color hover:bg-main-color-hover transition-colors duration-200 text-text-dark font-bold gap-1">
+              <NavLink
+                className="flex items-center justify-center gap-1.5 text-text-dark!"
+                href="/sign-in"
+              >
+                <span>
+                  <LogIn strokeWidth={2.5} />
+                </span>
+                Sign In
+              </NavLink>
+            </Button>
+          </SignedOut>
+          <SignedIn>
+            <div className="flex gap-2">
+              <Button className="px-5 rounded-2xl bg-quaternary-dark hover:bg-tertiary-dark transition-colors duration-200 font-semibold gap-1 text-white/80 border border-main-color/50">
+                <NavLink className="text-white/80!" href="">
+                  My Plans
+                </NavLink>
+              </Button>
+              <UserButton />
+            </div>
+          </SignedIn>
         </div>
       </div>
     </nav>
