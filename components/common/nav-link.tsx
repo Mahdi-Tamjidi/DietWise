@@ -7,16 +7,19 @@ const NavLink = ({
   href,
   children,
   className,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
   const pathName = usePathname();
   const isActive =
     pathName === href || (href !== "/" && pathName.startsWith(href));
   return (
     <Link
+      onClick={onClick}
       href={href}
       className={cn(
         "transition-colors text-sm duration-200 text-text-third hover:text-main-color-hover",

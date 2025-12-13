@@ -19,7 +19,7 @@ import { Star } from "lucide-react";
 
 const TestimonialSection = () => {
   return (
-    <section id="testimonial" className="bg-secondary-dark/30 py-20">
+    <section id="testimonial-section" className="bg-secondary-dark/30 py-20">
       <div className="container">
         <Title title="Success Stories" />
         <div className="w-full flex items-center justify-center ">

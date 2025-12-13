@@ -7,6 +7,7 @@ import NavLink from "@/components/common/nav-link";
 import { LogIn, Menu } from "lucide-react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -16,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -40,8 +42,8 @@ const Header = () => {
     >
       <div className="flex items-center justify-between mx-auto container">
         <div className="flex items-center flex-1 gap-2">
-          <Sheet>
-            <SheetTrigger className="md:hidden">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger className="md:hidden" asChild>
               <Menu className="text-text-third " />
             </SheetTrigger>
             <SheetContent
@@ -56,22 +58,40 @@ const Header = () => {
                   </span>
                 </div>
                 <SheetTitle className="py-3 border-b border-tertiary-dark">
-                  <NavLink className="text-xl font-bold" href="/demo">
-                    Live Demo
-                  </NavLink>
+                  <SheetClose asChild>
+                    <NavLink
+                      className="text-xl font-bold"
+                      href="#demo-section"
+                      onClick={() => setOpen(false)}
+                    >
+                      Live Demo
+                    </NavLink>
+                  </SheetClose>
                 </SheetTitle>
                 <SheetTitle className="py-3 border-b border-tertiary-dark">
-                  <NavLink className="text-xl font-bold" href="/hiw">
+                  <NavLink
+                    className="text-xl font-bold"
+                    href="#hiw-section"
+                    onClick={() => setOpen(false)}
+                  >
                     How it Works
                   </NavLink>
                 </SheetTitle>
                 <SheetTitle className="py-3 border-b border-tertiary-dark">
-                  <NavLink className="text-xl font-bold" href="/pricing">
+                  <NavLink
+                    className="text-xl font-bold"
+                    href="#pricing-section"
+                    onClick={() => setOpen(false)}
+                  >
                     Pricing
                   </NavLink>
                 </SheetTitle>
                 <SheetTitle className="py-3 ">
-                  <NavLink className="text-xl font-bold" href="/testimonial">
+                  <NavLink
+                    className="text-xl font-bold"
+                    href="#testimonial-section"
+                    onClick={() => setOpen(false)}
+                  >
                     Stories
                   </NavLink>
                 </SheetTitle>
@@ -87,10 +107,10 @@ const Header = () => {
         </div>
 
         <div className="hidden md:flex gap-10 font-semibold ">
-          <NavLink href="/demo">Live Demo</NavLink>
-          <NavLink href="/hiw">How it Works</NavLink>
-          <NavLink href="/pricing">Pricing</NavLink>
-          <NavLink href="/testimonial">Stories</NavLink>
+          <NavLink href="#demo-section">Live Demo</NavLink>
+          <NavLink href="#hiw-section">How it Works</NavLink>
+          <NavLink href="#pricing-section">Pricing</NavLink>
+          <NavLink href="#testimonial-section">Stories</NavLink>
         </div>
         <div className="flex flex-1 items-center  justify-end">
           <SignedOut>
@@ -109,7 +129,7 @@ const Header = () => {
           <SignedIn>
             <div className="flex gap-2">
               <Button className="px-5 rounded-2xl bg-quaternary-dark hover:bg-tertiary-dark transition-colors duration-200 font-semibold gap-1 text-white/80 border border-main-color/50">
-                <NavLink className="text-white/80!" href="">
+                <NavLink className="text-white/80!" href={"/generate-plan"}>
                   My Plans
                 </NavLink>
               </Button>

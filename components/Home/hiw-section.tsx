@@ -35,7 +35,7 @@ const steps: Step[] = [
 
 const HiwSection = () => {
   return (
-    <section id="hiw" className=" py-15 bg-secondary-dark/50">
+    <section id="hiw-section" className=" py-15 bg-secondary-dark/50">
       <div className="container">
         <Title
           title="See How It Works"

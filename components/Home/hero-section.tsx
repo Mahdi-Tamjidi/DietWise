@@ -8,6 +8,7 @@ import {
   Utensils,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -32,11 +33,21 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col lg:flex-row items-baseline lg:items-center gap-3">
             <Button className="border border-tertiary-dark px-12! py-7! rounded-2xl bg-main-color text-text-dark hover:bg-main-color-hover transition-colors duration-200 font-bold text-base md:text-lg ">
-              Generate My Plan <ArrowRight strokeWidth={3} />
+              <Link
+                href={"/generate-plan"}
+                className="flex items-center justify-center gap-2"
+              >
+                Generate My Plan <ArrowRight strokeWidth={3} />
+              </Link>
             </Button>
             <Button className="border border-tertiary-dark px-12! py-7! rounded-2xl bg-secondary-dark hover:bg-tertiary-dark text-white transition-colors duration-200 font-bold text-base md:text-lg">
-              <Play className="fill-main-color text-main-color" />
-              See a Demo
+              <Link
+                href="#demo-section"
+                className="flex items-center justify-center gap-2"
+              >
+                <Play className="fill-main-color text-main-color" />
+                See a Demo
+              </Link>
             </Button>
           </div>
 

@@ -87,7 +87,7 @@ const PricingCard = ({
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-25">
+    <section id="pricing-section" className="py-25">
       <div className="container">
         <Title
           title="Simple Pricing, Powerful Results"
