@@ -129,8 +129,8 @@ const Header = () => {
           <SignedIn>
             <div className="flex gap-2">
               <Button className="px-5 rounded-2xl bg-quaternary-dark hover:bg-tertiary-dark transition-colors duration-200 font-semibold gap-1 text-white/80 border border-main-color/50">
-                <NavLink className="text-white/80!" href={"/generate-plan"}>
-                  My Plans
+                <NavLink className="text-white/80!" href={"/diet-plans"}>
+                  Diet Plans
                 </NavLink>
               </Button>
               <UserButton />

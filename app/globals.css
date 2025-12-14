@@ -120,7 +120,7 @@
   }
 
   h2 {
-    @apply text-3xl lg:text-5xl font-bold;
+    @apply text-4xl lg:text-5xl font-bold;
   }
 
   h3 {
