@@ -12,14 +12,7 @@ const DemoSection = () => {
         />
         <div className=" flex flex-col lg:flex-row items-center border border-white/10 rounded-2xl overflow-hidden">
           <div className=" w-full flex bg-secondary-dark flex-col items-center justify-center flex-1 gap-8 p-4 sm:p-10 lg:p-15 border-b md:border-r border-white/10 ">
-            <MeasurementInfo
-              currentWeight={85}
-              height={179}
-              gender="female"
-              age={23}
-              goalWeight={75}
-              activity="Active"
-            />
+            <MeasurementInfo demo={true} />
           </div>
           <div className=" w-full bg-text-dark flex flex-col items-center justify-center flex-1 gap-10 p-10 sm:p-15  ">
             <MacroCounter
