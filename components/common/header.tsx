@@ -61,7 +61,7 @@ const Header = () => {
                   <SheetClose asChild>
                     <NavLink
                       className="text-xl font-bold"
-                      href="#demo-section"
+                      href="/#demo-section"
                       onClick={() => setOpen(false)}
                     >
                       Live Demo
@@ -71,7 +71,7 @@ const Header = () => {
                 <SheetTitle className="py-3 border-b border-tertiary-dark">
                   <NavLink
                     className="text-xl font-bold"
-                    href="#hiw-section"
+                    href="/#hiw-section"
                     onClick={() => setOpen(false)}
                   >
                     How it Works
@@ -80,7 +80,7 @@ const Header = () => {
                 <SheetTitle className="py-3 border-b border-tertiary-dark">
                   <NavLink
                     className="text-xl font-bold"
-                    href="#pricing-section"
+                    href="/#pricing-section"
                     onClick={() => setOpen(false)}
                   >
                     Pricing
@@ -89,7 +89,7 @@ const Header = () => {
                 <SheetTitle className="py-3 ">
                   <NavLink
                     className="text-xl font-bold"
-                    href="#testimonial-section"
+                    href="/#testimonial-section"
                     onClick={() => setOpen(false)}
                   >
                     Stories
@@ -107,10 +107,10 @@ const Header = () => {
         </div>
 
         <div className="hidden md:flex gap-10 font-semibold ">
-          <NavLink href="#demo-section">Live Demo</NavLink>
-          <NavLink href="#hiw-section">How it Works</NavLink>
-          <NavLink href="#pricing-section">Pricing</NavLink>
-          <NavLink href="#testimonial-section">Stories</NavLink>
+          <NavLink href="/#demo-section">Live Demo</NavLink>
+          <NavLink href="/#hiw-section">How it Works</NavLink>
+          <NavLink href="/#pricing-section">Pricing</NavLink>
+          <NavLink href="/#testimonial-section">Stories</NavLink>
         </div>
         <div className="flex flex-1 items-center  justify-end">
           <SignedOut>
