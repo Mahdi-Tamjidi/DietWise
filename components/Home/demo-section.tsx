@@ -15,13 +15,7 @@ const DemoSection = () => {
             <MeasurementInfo demo={true} />
           </div>
           <div className=" w-full bg-text-dark flex flex-col items-center justify-center flex-1 gap-10 p-10 sm:p-15  ">
-            <MacroCounter
-              cals={2475}
-              protein={180}
-              fiber={50}
-              carbs={220}
-              fat={30}
-            />
+            <MacroCounter cals={2475} protein={180} carbs={220} fat={30} />
           </div>
         </div>
       </div>

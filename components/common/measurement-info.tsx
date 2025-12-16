@@ -39,7 +39,12 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
 
     toast.success("Measurements submitted successfully");
 
+    const formAsString = Object.entries(form)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n");
+
     console.log("FORM DATA:", form);
+    console.log(formAsString);
   };
 
   return (

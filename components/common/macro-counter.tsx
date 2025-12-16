@@ -3,12 +3,11 @@ import { TrendingDown } from "lucide-react";
 type macrosType = {
   cals: number;
   protein: number;
-  fiber: number;
   carbs: number;
   fat: number;
 };
 
-const MacroCounter = ({ cals, protein, fiber, carbs, fat }: macrosType) => {
+const MacroCounter = ({ cals, protein, carbs, fat }: macrosType) => {
   return (
     <>
       <div>
@@ -45,15 +44,7 @@ const MacroCounter = ({ cals, protein, fiber, carbs, fat }: macrosType) => {
           </div>
           <span className="font-mono font-bold ">{carbs ? carbs : ""}g</span>
         </div>
-        <div className="w-full flex items-center justify-between p-4 bg-secondary-dark rounded-xl border border-tertiary-dark ">
-          <div className="flex items-center gap-3 ">
-            <div className="w-8 h-8 rounded bg-green-500/20 text-green-400 flex items-center justify-center text-xs font-bold">
-              P
-            </div>
-            <span className="text-text-third">Fiber</span>
-          </div>
-          <span className="font-mono font-bold ">{fiber ? fiber : ""}g</span>
-        </div>
+
         <div className="w-full flex items-center justify-between p-4 bg-secondary-dark rounded-xl border border-tertiary-dark ">
           <div className="flex items-center gap-3 ">
             <div className="w-8 h-8 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold">
