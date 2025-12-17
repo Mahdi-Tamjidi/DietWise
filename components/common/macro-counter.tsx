@@ -38,7 +38,7 @@ const MacroCounter = ({ cals, protein, carbs, fat }: macrosType) => {
         <div className="w-full flex items-center justify-between p-4 bg-secondary-dark rounded-xl border border-tertiary-dark ">
           <div className="flex items-center gap-3 ">
             <div className="w-8 h-8 rounded bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-xs font-bold">
-              P
+              C
             </div>
             <span className="text-text-third">Carbs</span>
           </div>
@@ -48,7 +48,7 @@ const MacroCounter = ({ cals, protein, carbs, fat }: macrosType) => {
         <div className="w-full flex items-center justify-between p-4 bg-secondary-dark rounded-xl border border-tertiary-dark ">
           <div className="flex items-center gap-3 ">
             <div className="w-8 h-8 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold">
-              P
+              F
             </div>
             <span className="text-text-third">Fat</span>
           </div>
