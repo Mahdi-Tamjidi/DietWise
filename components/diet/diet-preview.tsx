@@ -1,5 +1,5 @@
 import { Calendar, Clock, Target, TrendingDown, Utensils } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const DietPreview = () => {

@@ -240,7 +240,7 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
         <div className="w-full flex items-center justify-center border-t border-tertiary-dark">
           <Button
             onClick={handleSubmit}
-            className="mt-6 w-1/2 py-4 rounded-lg border border-tertiary-dark bg-main-color text-text-dark hover:bg-main-color-hover transition-colors duration-200 font-semibold "
+            className="mt-6 w-1/2 py-5 rounded-lg border border-tertiary-dark bg-main-color text-text-dark hover:bg-main-color-hover transition-colors duration-200 font-bold "
           >
             Submit
           </Button>
