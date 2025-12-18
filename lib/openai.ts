@@ -6,11 +6,9 @@ const token = process.env["OPENAI_API_KEY"];
 const endpoint = "https://models.github.ai/inference";
 const model = "openai/gpt-4.1";
 
-export const generateSummaryFromGPT = async (pdfText: string) => {
+export const createDietFromGPT = async (userMeasurements: string) => {
   try {
-    const cleanedPdfText = pdfText.replace(/\s{2,}/g, " ").trim();
-
-    const prompt = `${DIET_PROMPT}\n\nTransform this document into an engaging, easy-to-read summary with contextually relevant emojis and proper markdown formatting:\n\n${cleanedPdfText}`;
+    const prompt = `${DIET_PROMPT}\n\nCalculate the calories, macros and create a simple 5-meal diet plan according to this person’s information with the tips and the formatting I told you:\n\n${userMeasurements}`;
 
     const client = ModelClient(endpoint, new AzureKeyCredential(token || ""));
 
@@ -21,7 +19,7 @@ export const generateSummaryFromGPT = async (pdfText: string) => {
           {
             role: "system",
             content:
-              "You are a helpful assistant specialized in summarizing documents.",
+              "You are a professional dietitian specialized in creating diets and calculating macros based on a person's information.",
           },
           { role: "user", content: prompt },
         ],

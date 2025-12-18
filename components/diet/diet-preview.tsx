@@ -71,7 +71,7 @@ const DietPreview = () => {
           </div>
           <Button className="border border-tertiary-dark px-12! py-7! rounded-2xl bg-tertiary-dark hover:bg-secondary-dark text-white transition-colors duration-200 font-semibold text-base md:text-lg">
             <Link
-              href="#demo-section"
+              href="/diet"
               className="flex items-center justify-center gap-2"
             >
               <Utensils className="fill-main-color text-main-color" />
