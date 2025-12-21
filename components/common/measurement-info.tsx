@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
-import { validateForm } from "@/utils/helper-functions";
+import { parseDietString, validateForm } from "@/utils/helper-functions";
 import { generateDiet, storeDiet } from "@/actions/diet-actions";
 import { useRouter } from "next/navigation";
 
@@ -45,7 +45,7 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
       .map(([key, value]) => `${key}: ${value}`)
       .join("\n");
     // console.log("FORM DATA:", form);
-    console.log(formAsString);
+    // console.log(formAsString);
     try {
       setIsLoading(true);
       toast("⏳ Processing Your Information...", {
@@ -55,13 +55,13 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
       const diet = await generateDiet(formAsString);
       // console.log(diet.message, diet.data);
 
-      const { data = null, message = null } = diet || {};
+      const { data = null } = diet || {};
       if (data) {
         let storeResult: any;
         toast("📄 Saving Diet...", {
           description: "Hang tight! We are saving your diet plan! ✨",
         });
-        storeResult = await storeDiet({ dietPlan: data });
+        storeResult = await storeDiet({ dietPlan: parseDietString(diet.data) });
         toast("✨ Diet Generated!", {
           description: "Your Diet has been successfully created and saved! ✨",
         });

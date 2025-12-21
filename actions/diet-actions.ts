@@ -3,12 +3,13 @@
 import { getDbConnection } from "@/lib/db";
 import { createDietFromLlama } from "@/lib/llama";
 import { createDietFromGPT } from "@/lib/openai";
+import { ParsedDiet } from "@/utils/helper-functions";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 interface DietType {
   userId?: string;
-  dietPlan: string;
+  dietPlan: ParsedDiet;
 }
 
 export const generateDiet = async (measurements: string) => {
