@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
 import { validateForm } from "@/utils/helper-functions";
+import { generateDiet } from "@/actions/diet-actions";
 
 export type ActivityLevel = "Sedentary" | "Moderate" | "Active";
 export type MeasurementForm = {
@@ -28,23 +29,38 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
     activity: demo ? "Active" : "Sedentary",
   };
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [form, setForm] = useState<MeasurementForm>(initialForm);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const validationError = validateForm(form, initialForm);
 
     if (validationError) {
       toast.error(validationError);
       return;
     }
-
-    toast.success("Measurements submitted successfully");
-
     const formAsString = Object.entries(form)
       .map(([key, value]) => `${key}: ${value}`)
       .join("\n");
-
-    console.log("FORM DATA:", form);
+    // console.log("FORM DATA:", form);
     console.log(formAsString);
+    try {
+      setIsLoading(true);
+      toast("⏳ Processing Your Information...", {
+        description: "Hang tight! Our AI is reading through measurements! ✨",
+      });
+
+      const diet = await generateDiet(formAsString);
+      console.log(diet.message, diet.data);
+
+      toast("✨ Diet Generated!", {
+        description: "Your Diet has been successfully generated and saved! ✨",
+      });
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Error occurred", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -59,9 +75,9 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
           <select
             className={cn(
               "w-full bg-tertiary-dark text-text-secondary text-sm font-medium  rounded-lg p-2  cursor-pointer outline-none ",
-              demo && "cursor-default"
+              (demo || isLoading) && "cursor-default"
             )}
-            disabled={demo}
+            disabled={demo || isLoading}
             value={form.gender}
             onChange={(e) => setForm((f) => ({ ...f, gender: e.target.value }))}
           >
@@ -82,14 +98,14 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
             min="1"
             className={cn(
               "w-full bg-tertiary-dark text-text-secondary text-sm font-medium rounded-lg p-2 outline-none",
-              demo && "cursor-default"
+              (demo || isLoading) && "cursor-default"
             )}
             placeholder="Enter age"
             value={form.age}
             onChange={(e) =>
               setForm((f) => ({ ...f, age: Number(e.target.value) }))
             }
-            disabled={demo}
+            disabled={demo || isLoading}
           />
         </div>
       </div>
@@ -106,14 +122,14 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
           max="250"
           className={cn(
             "transition-colors text-sm w-full h-2 bg-tertiary-dark rounded-lg appearance-none cursor-pointer accent-main-color-hover mb-2 text-text-third hover:text-main-color-hover",
-            demo && "disabled-slider cursor-default"
+            (demo || isLoading) && "disabled-slider cursor-default"
           )}
           type="range"
           value={form.height}
           onChange={(e) =>
             setForm((f) => ({ ...f, height: Number(e.target.value) }))
           }
-          disabled={demo}
+          disabled={demo || isLoading}
         />
         <div className="flex justify-between text-xs text-slate-600">
           <span>150 cm</span>
@@ -132,14 +148,14 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
           max="300"
           className={cn(
             "w-full h-2 bg-tertiary-dark rounded-lg appearance-none cursor-pointer accent-main-color-hover mb-2",
-            demo && "disabled-slider cursor-default"
+            (demo || isLoading) && "disabled-slider cursor-default"
           )}
           type="range"
           value={form.weight}
           onChange={(e) =>
             setForm((f) => ({ ...f, weight: Number(e.target.value) }))
           }
-          disabled={demo}
+          disabled={demo || isLoading}
         />
         <div className="flex justify-between text-xs text-slate-600">
           <span>40 kg</span>
@@ -158,14 +174,14 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
           max="300"
           className={cn(
             "w-full h-2 bg-tertiary-dark rounded-lg appearance-none cursor-pointer accent-main-color-hover mb-2",
-            demo && "disabled-slider cursor-default"
+            (demo || isLoading) && "disabled-slider cursor-default"
           )}
           type="range"
           value={form.goalWeight}
           onChange={(e) =>
             setForm((f) => ({ ...f, goalWeight: Number(e.target.value) }))
           }
-          disabled={demo}
+          disabled={demo || isLoading}
         />
         <div className="flex justify-between text-xs text-slate-600">
           <span>40 kg</span>
@@ -206,6 +222,7 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
               return (
                 <Button
                   key={level}
+                  disabled={isLoading}
                   type="button"
                   onClick={() => setForm((f) => ({ ...f, activity: level }))}
                   className={cn(
@@ -241,6 +258,7 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
           <Button
             onClick={handleSubmit}
             className="mt-6 w-1/2 py-5 rounded-lg border border-tertiary-dark bg-main-color text-text-dark hover:bg-main-color-hover transition-colors duration-200 font-bold "
+            disabled={isLoading}
           >
             Submit
           </Button>
