@@ -1,9 +1,9 @@
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Users table (Clerk-based)
+-- Users table
 CREATE TABLE users (
-    id VARCHAR(255) PRIMARY KEY, -- Clerk user ID
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     email VARCHAR(255) UNIQUE NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -13,17 +13,17 @@ CREATE TABLE users (
     status VARCHAR(50) DEFAULT 'inactive'
 );
 
--- Diets table (formerly pdf_summaries)
+
 CREATE TABLE diets (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    user_id VARCHAR(255) REFERENCES users(id),
+    user_id VARCHAR(255) NOT NULL,
     diet_plan TEXT NOT NULL,
     status VARCHAR(50) DEFAULT 'completed',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
+); 
 
--- Payments table (unchanged)
+-- Payments table
 CREATE TABLE payments (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     amount INTEGER NOT NULL,
@@ -35,27 +35,27 @@ CREATE TABLE payments (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- updated_at trigger function
+-- Create updated_at trigger function
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
     NEW.updated_at = CURRENT_TIMESTAMP;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ language 'plpgsql';
 
--- Triggers
+-- Add triggers to update updated_at
 CREATE TRIGGER update_users_updated_at
     BEFORE UPDATE ON users
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
-CREATE TRIGGER update_diets_updated_at
-    BEFORE UPDATE ON diets
+CREATE TRIGGER update_pdf_summaries_updated_at
+    BEFORE UPDATE ON pdf_summaries
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_payments_updated_at
     BEFORE UPDATE ON payments
     FOR EACH ROW
-    EXECUTE FUNCTION update_updated_at_column();
+    EXECUTE FUNCTION update_updated_at_column(); 
