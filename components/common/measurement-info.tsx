@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
 import { validateForm } from "@/utils/helper-functions";
-import { generateDiet } from "@/actions/diet-actions";
+import { generateDiet, storeDiet } from "@/actions/diet-actions";
+import { useRouter } from "next/navigation";
 
 export type ActivityLevel = "Sedentary" | "Moderate" | "Active";
 export type MeasurementForm = {
@@ -28,9 +29,11 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
     goalWeight: demo ? 75 : 40,
     activity: demo ? "Active" : "Sedentary",
   };
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [form, setForm] = useState<MeasurementForm>(initialForm);
+
   const handleSubmit = async () => {
     const validationError = validateForm(form, initialForm);
 
@@ -50,7 +53,20 @@ const MeasurementInfo = ({ demo }: { demo: boolean }) => {
       });
 
       const diet = await generateDiet(formAsString);
-      console.log(diet.message, diet.data);
+      // console.log(diet.message, diet.data);
+
+      const { data = null, message = null } = diet || {};
+      if (data) {
+        let storeResult: any;
+        toast("📄 Saving Diet...", {
+          description: "Hang tight! We are saving your diet plan! ✨",
+        });
+        storeResult = await storeDiet({ dietPlan: data });
+        toast("✨ Diet Generated!", {
+          description: "Your Diet has been successfully created and saved! ✨",
+        });
+        router.push(`/diet/${storeResult.data.id}`);
+      }
 
       toast("✨ Diet Generated!", {
         description: "Your Diet has been successfully generated and saved! ✨",
