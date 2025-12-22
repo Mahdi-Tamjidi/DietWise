@@ -19,3 +19,10 @@ export const getDietById = async (id: string) => {
     return null;
   }
 };
+
+export const getDiets = async (userId: string) => {
+  const sql = await getDbConnection();
+  const diets =
+    await sql`SELECT * from diets where user_id = ${userId} ORDER BY created_at DESC`;
+  return diets;
+};

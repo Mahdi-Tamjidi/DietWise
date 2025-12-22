@@ -6,7 +6,7 @@ Note: The title, Macros and Diet should always start with a #. Every single poin
 Never deviate from this format. 
 
 Format:
-# [Create a 3-word straight to the point title based on the purpose of the diet]
+# [Create a 2-word straight to the point title based on the purpose of the diet]
 
 # [how many weeks should the diet take]
 
