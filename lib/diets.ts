@@ -10,7 +10,7 @@ export const getDietById = async (id: string) => {
     diet_plan,
     status,
     created_at,
-    updated_at,
+    updated_at
      FROM diets WHERE id = ${id}`;
 
     return diet;

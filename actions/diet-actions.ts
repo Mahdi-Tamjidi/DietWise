@@ -109,3 +109,19 @@ export const storeDiet = async ({ dietPlan }: DietType) => {
     data: { id: savedDiet.id },
   };
 };
+
+export const updateDietFinished = async ({
+  id,
+  finished,
+}: {
+  id: string;
+  finished: "completed" | "not completed";
+}) => {
+  const sql = await getDbConnection();
+
+  await sql`
+    UPDATE diets
+    SET finished = ${finished}
+    WHERE id = ${id}
+  `;
+};

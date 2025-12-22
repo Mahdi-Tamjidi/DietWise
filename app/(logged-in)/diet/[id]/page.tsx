@@ -1,16 +1,40 @@
-"use client";
-
-import { Switch } from "@/components/ui/switch";
+import CompletedToggle from "@/components/diet/completed-toggle";
+import { getDietById } from "@/lib/diets";
 import { Calendar, Clock, Flame, Target } from "lucide-react";
-import { useState } from "react";
+import { notFound } from "next/navigation";
 
-const DietPage = () => {
-  const [checked, setChecked] = useState(false);
+interface DietPageProps {
+  params: Promise<{ id: string }>;
+}
+
+const DietPage = async ({ params }: DietPageProps) => {
+  const { id } = await params;
+
+  const diet = await getDietById(id);
+
+  if (!diet) {
+    notFound();
+  }
+
+  const {
+    title,
+    duration,
+    calories,
+    protein,
+    carbs,
+    fat,
+    breakfast,
+    snack1,
+    lunch,
+    snack2,
+    dinner,
+  } = diet["diet_plan"];
+
   return (
     <div className="container mt-20 py-10 flex flex-col gap-7">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-linear-to-br from-tertiary-dark/90 to-secondary-dark/90 p-10 rounded-2xl ">
         <div className="flex flex-col  gap-4">
-          <h2>Summer Shred</h2>
+          <h2>{title}</h2>
           <div className="flex flex-col lg:flex-row lg:gap-5 gap-3">
             <div className="flex items-center gap-1.5 text-text-secondary  ">
               <Calendar size={16} />
@@ -27,16 +51,7 @@ const DietPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <label htmlFor="complete">
-            {checked ? "Completed" : "Not Completed"}
-          </label>
-          <Switch
-            id="complete"
-            checked={checked}
-            onCheckedChange={setChecked}
-          />
-        </div>
+        <CompletedToggle id={id} />
       </div>
       <div className=" flex flex-col gap-5  bg-linear-to-br from-tertiary-dark/90 to-secondary-dark/90 p-10 rounded-2xl ">
         <p className="text-2xl font-bold">Daily Nutrition Target</p>
