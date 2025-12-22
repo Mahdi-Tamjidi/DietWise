@@ -16,6 +16,8 @@ const DietPage = async ({ params }: DietPageProps) => {
     notFound();
   }
 
+  const created = diet["created_at"];
+
   const {
     title,
     duration,
@@ -30,23 +32,27 @@ const DietPage = async ({ params }: DietPageProps) => {
     dinner,
   } = diet["diet_plan"];
 
+  const meals = [
+    { label: "Breakfast", items: breakfast },
+    { label: "Snack", items: snack1 },
+    { label: "Lunch", items: lunch },
+    { label: "Snack", items: snack2 },
+    { label: "Dinner", items: dinner },
+  ];
+
   return (
     <div className="container mt-20 py-10 flex flex-col gap-7">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-linear-to-br from-tertiary-dark/90 to-secondary-dark/90 p-10 rounded-2xl ">
-        <div className="flex flex-col  gap-4">
+        <div className="flex flex-col  gap-6">
           <h2>{title}</h2>
           <div className="flex flex-col lg:flex-row lg:gap-5 gap-3">
             <div className="flex items-center gap-1.5 text-text-secondary  ">
               <Calendar size={16} />
-              <span>Created: Jan 15, 2024</span>
+              <span>Created: {created.toLocaleDateString()}</span>
             </div>
             <div className="flex items-center gap-1.5 text-text-secondary ">
               <Clock size={16} />
-              <span>Duration: 12 Weeks</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-text-secondary  ">
-              <Target size={16} />
-              <span>Goal: Weight Loss</span>
+              <span>Duration: {duration} months</span>
             </div>
           </div>
         </div>
@@ -63,7 +69,7 @@ const DietPage = async ({ params }: DietPageProps) => {
             <p className="text-sm text-text-secondary">Daily Calories</p>
 
             <span className="text-3xl text-main-color-hover font-bold">
-              3024{" "}
+              {calories}{" "}
               <span className=" text-xs text-text-secondary font-normal">
                 kcal
               </span>
@@ -79,7 +85,8 @@ const DietPage = async ({ params }: DietPageProps) => {
               <p className="text-sm text-text-secondary">Protein</p>
 
               <span className=" text-3xl font-bold flex gap-0.75 items-baseline">
-                120<span className="text-xs text-text-secondary ">g</span>
+                {protein}
+                <span className="text-xs text-text-secondary ">g</span>
               </span>
             </div>
           </div>
@@ -90,7 +97,8 @@ const DietPage = async ({ params }: DietPageProps) => {
             <div className="flex flex-col gap-2">
               <p className="text-sm text-text-secondary">Carbs</p>
               <span className=" text-3xl font-bold flex gap-0.75 items-baseline">
-                200<span className="text-xs text-text-secondary ">g</span>
+                {carbs}
+                <span className="text-xs text-text-secondary ">g</span>
               </span>
             </div>
           </div>
@@ -102,7 +110,8 @@ const DietPage = async ({ params }: DietPageProps) => {
               <p className="text-sm text-text-secondary">Fat</p>
 
               <span className=" text-3xl font-bold flex gap-0.75 items-baseline">
-                30<span className="text-xs text-text-secondary ">g</span>
+                {fat}
+                <span className="text-xs text-text-secondary ">g</span>
               </span>
             </div>
           </div>
@@ -110,24 +119,22 @@ const DietPage = async ({ params }: DietPageProps) => {
       </div>
       <div className=" flex flex-col gap-5  bg-linear-to-br from-tertiary-dark/90 to-secondary-dark/90 p-10 rounded-2xl ">
         <p className="text-2xl font-bold">Daily Nutrition Target</p>
-        <div className="bg-text-dark rounded-xl px-7 py-5 border border-tertiary-dark flex items-baseline gap-10 md:gap-20">
-          <p className="font-bold text-lg text-main-color-hover">Breakfast</p>
-          <ul className="flex flex-col gap-2.5 list-disc list-inside marker:text-main-color-hover">
-            <li>chicken</li>
-            <li>chicken</li>
-            <li>chicken</li>
-            <li>chicken</li>
-          </ul>
-        </div>
-        <div className="bg-text-dark rounded-xl px-7 py-5 border border-tertiary-dark flex items-baseline gap-10 md:gap-20">
-          <p className="font-bold text-lg text-main-color-hover">Breakfast</p>
-          <ul className="flex flex-col gap-2.5 list-disc list-inside marker:text-main-color-hover">
-            <li>chicken</li>
-            <li>chicken</li>
-            <li>chicken</li>
-            <li>chicken</li>
-          </ul>
-        </div>
+        {meals.map(({ label, items }, index) => (
+          <div
+            key={index}
+            className="bg-text-dark rounded-xl px-7 py-5 border border-tertiary-dark flex items-baseline "
+          >
+            <p className="font-bold text-lg text-main-color-hover flex-1/3 md:flex-1/6">
+              {label}
+            </p>
+
+            <ul className="flex flex-col gap-2.5 list-disc list-inside marker:text-main-color-hover flex-2/3 md:flex-5/6">
+              {items.map((item: string, index: number) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
