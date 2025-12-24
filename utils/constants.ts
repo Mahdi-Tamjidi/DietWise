@@ -10,8 +10,8 @@ export const pricingPlans = [
       "Weight Logging",
       "Community Support",
     ],
-    paymentLink: "",
-    priceId: "",
+    paymentLink: "https://buy.stripe.com/test_eVq8wP16yfbO2kH88R5gc00",
+    priceId: "price_1ShWlMDkTuRJ02BxZDuVbavv",
   },
   {
     id: "proAi",
@@ -25,8 +25,8 @@ export const pricingPlans = [
       "24/7 AI Coach Chat",
       "Progress Prediction",
     ],
-    paymentLink: "",
-    priceId: "",
+    paymentLink: "https://buy.stripe.com/test_dRmbJ12aC5Bef7texf5gc01",
+    priceId: "price_1ShWnBDkTuRJ02BxADTty7QW",
   },
   {
     id: "coaching",
@@ -40,8 +40,8 @@ export const pricingPlans = [
       "Priority Support",
       "Video Consultations",
     ],
-    paymentLink: "",
-    priceId: "",
+    paymentLink: "https://buy.stripe.com/test_cNifZhdTkbZC2kHdtb5gc02",
+    priceId: "price_1ShWnBDkTuRJ02BxZhM6mMLy",
   },
 ];
 
